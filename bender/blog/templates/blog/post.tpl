@@ -14,9 +14,10 @@
 		{% include 'blog/blog_content.tpl' %}
 		{% if comments %}
 			{% for comment in comments %}
+			<a href="/delete/{{comment.id}}" >DELETE</a>
 				<div>{{ comment.content }}</div>
-				<div>{{ comment.author }}</div>
-				<div>{{ comment.created_at }}</div>
+				<div>{{ comment.id }}</div>
+				<!-- <div>{{ comment.created_at }}</div> -->
 				<div>{{ comment.to_post.pk }}: {{ comment.to_post }}</div>
 			{% endfor %}
 		{% endif %}
