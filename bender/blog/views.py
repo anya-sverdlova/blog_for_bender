@@ -28,7 +28,7 @@ class PostView(views.BaseTemplatedView):
         context = super(PostView, self).get_context_data(**kwargs)
         posts = models.Post.objects.all()
         post_id = kwargs.get('post_id')
-        comments = models.Comment.objects.filter(to_post=post_id)
+        comments = models.Comment.objects.filter(to_post=post_id).order_by('pk')
         # comments.delete()
 
         post = get_object_or_404(models.Post, pk=post_id)
@@ -61,5 +61,10 @@ def delete(request, id):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
+def change_comment(request, id):
+    comment = models.Comment.objects.filter(pk=id)
+    comment.update(content = request.POST.get('content'))
+
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
