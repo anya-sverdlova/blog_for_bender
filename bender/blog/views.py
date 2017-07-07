@@ -42,25 +42,23 @@ class PostView(views.BaseTemplatedView):
 
         return context
 
-    def post(self, request, *args, **kwargs):
-    	context = super(PostView, self).get_context_data(**kwargs)
+def add_comment(request, id):
+    post = get_object_or_404(models.Post, pk=id)
 
-        post = get_object_or_404(models.Post, pk=kwargs.get('post_id'))
+    comment = models.Comment()
+    comment.create({
+        'content': request.POST.get('content'), 
+        'author': request.user, 
+        'to_post': post
+        })
+    comment.save()
 
-        comment = models.Comment()
-        comment.create({
-            'content': request.POST.get('content'), 
-            'author': request.user, 
-            'to_post': post
-            })
-        comment.save()
-
-        return HttpResponseRedirect(request.path)
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 def delete(request, id):
     comment = models.Comment.objects.filter(pk=id)
     comment.delete()
-    
+
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))
 
 
