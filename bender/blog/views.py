@@ -13,10 +13,12 @@ class BlogView(views.BaseTemplatedView):
 
     def get_context_data(self, **kwargs):
         context = super(BlogView, self).get_context_data(**kwargs)
+        comments = models.Comment.objects.all()[:5]
         posts = models.Post.objects.all()
 
         context.update({
-            "posts": posts
+            "posts": posts,
+            "comments": comments
         })
 
         return context
@@ -29,7 +31,6 @@ class PostView(views.BaseTemplatedView):
         posts = models.Post.objects.all()
         post_id = kwargs.get('post_id')
         comments = models.Comment.objects.filter(to_post=post_id).order_by('pk')
-        # comments.delete()
 
         post = get_object_or_404(models.Post, pk=post_id)
 
