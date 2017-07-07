@@ -43,6 +43,20 @@ class PostView(views.BaseTemplatedView):
 
         return context
 
+class PostsByAuthorView(views.BaseTemplatedView):
+    template_name = 'blog/posts_by_author.tpl'
+
+    def get_context_data(self, **kwargs):
+        context = super(PostsByAuthorView, self).get_context_data(**kwargs)
+        author_id = kwargs.get('id')
+        posts = models.Post.objects.filter(author=author_id)
+
+        context.update({    
+            "posts": posts,
+        })
+
+        return context
+
 def add_comment(request, id):
     post = get_object_or_404(models.Post, pk=id)
 

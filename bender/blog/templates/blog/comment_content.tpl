@@ -24,7 +24,7 @@
 		</div>
 		<div>{{ comment.id }}</div>
 		<div>{{ comment.created_at }}</div>
-		{% if 'blog' in request.path %} <a href="/post/{{comment.to_post.pk}}"> {% else %} <div> {% endif %}
+		{% if 'blog' in request.path %} <a href="/post/{{comment.to_post.pk}}/"> {% else %} <div> {% endif %}
 			{{ comment.to_post.pk }}: {{ comment.to_post }}
 		{% if 'blog' in request.path %} </a> {% else %} </div> {% endif %}
 	</div>

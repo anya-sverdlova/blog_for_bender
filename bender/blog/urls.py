@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^delete/(?P<id>\d+)/$', views.delete, name='delete'),
     url(r'^add_comment/(?P<id>\d+)/$', views.add_comment, name='add_comment'),
     url(r'^change_comment/(?P<id>\d+)/$', views.change_comment, name='change_comment'),
+    url(r'^posts_by_author/(?P<id>\d+)/$', views.PostsByAuthorView.as_view(), name='posts_by_author'),
 ]
