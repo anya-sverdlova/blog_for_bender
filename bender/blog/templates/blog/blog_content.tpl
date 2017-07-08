@@ -3,10 +3,11 @@
 {% endif %}
 {% for post in posts %}
 	<a style="background: green; color: white" href="/post/{{post.pk}}">{{ post.title }}</a></td>
-	<p style="background: yellow">{{ post.content }}</p>
+	<p style="background: #e5e5e5;">{{ post.content }}</p>
 	{% if 'blog' in request.path %}
 		<p style="background: #d5d5d5;">{{ post.author }}</p>
-		<a href="/posts_by_author/{{post.author.pk}}/">See all posts of this author</a>
+		<a href="/posts_by_author/{{post.author.pk}}">See all posts of this author</a>
 	{% endif %}
 	<p style="background: #fafafa;">{{ post.created_at }}</p>
 {% endfor %}
+

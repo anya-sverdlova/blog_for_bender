@@ -10,7 +10,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-9">
       <ul class="nav navbar-nav">
         <li><a href="{{ url('tasks:index') }}">Задачи</a></li>
-        <li><a href="/blog">Блог</a></li>
+        <li><a href="/blog/?page1">Блог</a></li>
         <!-- <li><a href="#">Link</a></li> -->
       </ul>
       <ul class="nav navbar-nav navbar-right">

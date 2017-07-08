@@ -5,6 +5,7 @@
 {% block content %}
 	<div style="width: 70%; float: left;">
 		{% include 'blog/blog_content.tpl' %}
+		{% include 'blog/pagination.tpl' %}
 	</div>
 	<div style="width: 29%; float: right;">
 		{% include 'blog/comment_content.tpl' %}

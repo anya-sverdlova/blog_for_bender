@@ -18,8 +18,8 @@ class Post(models.Model):
     )
     author = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
         verbose_name=_(u'Автор')
     )
     created_at = models.DateTimeField(
