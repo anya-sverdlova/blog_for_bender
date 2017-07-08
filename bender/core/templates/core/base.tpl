@@ -7,7 +7,7 @@
     <title>
       {% block title %}Base{% endblock %}
     </title>
-
+    <script type="text/javascript"  url="/blog/clamp.js"></script>
     {% block css %}
       <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
@@ -20,6 +20,7 @@
     {% endblock %}
     
     {% block js %}
+      <script type="text/javascript" src="{{ STATIC_URL }}js/clamp.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     {% endblock %}

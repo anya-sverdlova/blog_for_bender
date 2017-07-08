@@ -6,5 +6,5 @@
 	
 {% include 'blog/blog_content.tpl' %}
 {% include 'blog/pagination.tpl' %}
-	
+
 {% endblock %}
