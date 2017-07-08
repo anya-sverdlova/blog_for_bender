@@ -24,8 +24,8 @@ class Post(models.Model):
     )
     created_at = models.DateTimeField(
         auto_now_add=True,
-        null=True,
-        blank=True,
+        null=False,
+        blank=False,
         verbose_name=_(u'Опубликовано')
     )
     

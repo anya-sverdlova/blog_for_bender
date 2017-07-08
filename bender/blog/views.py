@@ -38,7 +38,7 @@ class PostView(views.BaseTemplatedView):
         context = super(PostView, self).get_context_data(**kwargs)
         post_id = kwargs.get('post_id')
         comments = models.Comment.objects.filter(to_post=post_id).order_by('pk')
-        posts = models.Post.objects.all()[:10]
+        posts = models.Post.objects.all().order_by('-created_at')[:5]
 
         post = get_object_or_404(models.Post, pk=post_id)
 
