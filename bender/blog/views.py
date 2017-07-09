@@ -3,6 +3,7 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, request
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from datetime import datetime
 
 from core import views
 from blog import models
@@ -11,12 +12,12 @@ from .form import CommentForm
 
 class BlogView(views.BaseTemplatedView):
     template_name = 'blog/blog.tpl'
-    pagination_step = 2
+    pagination_step = 3
 
     def get_context_data(self, **kwargs):
         context = super(BlogView, self).get_context_data(**kwargs)
         comments = models.Comment.objects.all()[:5]
-        posts_list = models.Post.objects.all().order_by('-created_at')
+        posts_list = models.Post.objects.all().order_by('-pk')
 
         data = set_pagination({
             'self': self,
@@ -38,7 +39,7 @@ class PostView(views.BaseTemplatedView):
         context = super(PostView, self).get_context_data(**kwargs)
         post_id = kwargs.get('post_id')
         comments = models.Comment.objects.filter(to_post=post_id).order_by('pk')
-        posts = models.Post.objects.all().order_by('-created_at')[:5]
+        posts = models.Post.objects.all().order_by('-pk')[:5]
 
         post = get_object_or_404(models.Post, pk=post_id)
 
@@ -109,6 +110,10 @@ def delete(request, id):
 
 def change_comment(request, id):
     comment = models.Comment.objects.filter(pk=id)
-    comment.update(content = request.POST.get('content'))
+    comment.update(
+        content = request.POST.get('content'),
+        is_corrected = True,
+        corrected_at = datetime.now()
+    )
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    

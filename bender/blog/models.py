@@ -3,6 +3,9 @@
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext as _
+from datetime import datetime
+from django.utils import formats, timezone
+
 
 class Post(models.Model):
     title = models.CharField(
@@ -58,8 +61,19 @@ class Comment(models.Model):
         null=False,
         blank=False,
     )
+    is_corrected = models.NullBooleanField(
+        default=False,
+        null=True,
+        blank=True,
+    )
+    corrected_at = models.DateTimeField(
+        auto_now_add=True,
+        null=False,
+        blank=False,
+        verbose_name=_(u'Откорректировано')
+    )
     def create(self, args):
         self.to_post = args['to_post']
         self.author = args['author']
         self.content = args['content']
-
+        self.created_at = datetime.now()

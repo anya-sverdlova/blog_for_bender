@@ -3,22 +3,40 @@
 {% block title %}Бложик{% endblock %}
 
 {% block content %}
-	<div class="container-fluid">
+<style>
+	#blog {
+		font-family: Comic Sans MS;
+		padding-top: 10px;
+	}
+	#preview #container-comments {
+		margin-top: 0; 
+	}
+	#preview h4 {
+		margin-top: 0;
+		color: #31708f;
+	}
+</style>
+	<div id="blog" class="container-fluid">
 		<div class="col-md-8 justify">
-			{% include 'blog/blog_content.tpl' %}
+			<div id="container-posts">
+				{% include 'blog/blog_content.tpl' %}
+			</div>
 			{% include 'blog/pagination.tpl' %}
-		</div>
-		<div class="col-md-4 justify">
-			{% include 'blog/comment_content.tpl' %}
 			<script>
 				window.onload = function() {
-					var previews = document.getElementsByClassName('preview-content');
+					var previews = document.getElementsByClassName('_preview-content');
 
 					for ( var i = 0; i < previews.length; i++ ) {
 						$clamp(previews[i], {clamp: 8});
 					}
 				}
 			</script>
+		</div>
+		<div class="col-md-4 justify">
+			<div id="preview">
+				<h4>Комментарии:</h4>
+				{% include 'blog/comment_content.tpl' %}
+			</div>
 		</div>
 	</div>
 {% endblock %}
