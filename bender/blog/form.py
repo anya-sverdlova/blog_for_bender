@@ -12,5 +12,6 @@ class CommentForm(ModelForm):
         model = Comment
         fields = ('content',)
         widgets = {
-            'content': Textarea(attrs={'rows': 10, 'placeholder': "Оставьте комментарий"}),
+            'content': Textarea(attrs={'rows': 10, 'placeholder': "Оставьте комментарий",\
+            	'class': 'form-control', 'style': 'margin: 10px 0; resize: none'}),
         }

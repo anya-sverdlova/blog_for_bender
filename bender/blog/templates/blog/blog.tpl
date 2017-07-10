@@ -25,6 +25,8 @@
 		font-size: 1em;
 	}
 	#preview #container-comments .panel-footer * {
+		width: 100%;
+		padding: 0;
 		text-align: left;
 	}
 	#preview #container-comments .panel-footer, 

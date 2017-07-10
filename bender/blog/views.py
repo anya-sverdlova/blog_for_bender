@@ -110,10 +110,14 @@ def delete(request, id):
 
 def change_comment(request, id):
     comment = models.Comment.objects.filter(pk=id)
-    comment.update(
-        content = request.POST.get('content'),
-        is_corrected = True,
-        corrected_at = datetime.now()
-    )
+    comment_content = models.Comment.objects.filter(pk=id).values_list("content")[0][0]
+    newContent = request.POST.get('content')
+
+    if ( newContent != str(comment_content) ):
+        comment.update(
+            content = newContent,
+            is_corrected = True,
+            corrected_at = datetime.now()
+        )
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER'))    

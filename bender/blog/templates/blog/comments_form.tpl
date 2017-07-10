@@ -3,5 +3,5 @@
 	    {% for fields in form %}
 	    	{{ fields }}
 	    {% endfor %} 
-	    <button>Отправить комментарий</button>
+	    <button class="btn btn-block btn-default active">Отправить комментарий</button>
 	</form>

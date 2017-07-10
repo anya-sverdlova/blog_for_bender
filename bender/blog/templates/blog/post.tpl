@@ -54,7 +54,7 @@
 		<div class="col-md-8">
 			{% include 'blog/single_post.tpl' %}
 			<div id="container-comment-form">
-				<button data-toggle="collapse" data-target="#demo">Добавить комментарий</button>
+				<button data-toggle="collapse" data-target="#demo" class="btn btn-default btn-block active">Добавить комментарий</button>
 				<div id="demo" class="collapse">
 					{% include 'blog/comments_form.tpl' %}
 				</div>
