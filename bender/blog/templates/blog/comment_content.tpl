@@ -12,54 +12,69 @@
 	}
 	#container-comments .glyphicon {
 		cursor: pointer;
+		color: #9c9c9c;
 	}
-	#container-comments .glyphicon-pencil:hover {
+	#container-comments .glyphicon:hover {
 		text-decoration: underline;
-		color: #245269;
+		color: #333;
 	}
 	#container-comments {
 		margin-top: 20px;
 		padding: 0;
 	}
 	#container-comments>.comment-item {
+		position: relative;
 		padding: 0;
-		border-radius: 4px 4px 0 0;
 		margin-bottom: 25px;
+		border-radius: 4px 4px 0 0;
 	}
-	#container-comments .panel-heading * {
+	#container-comments .panel-body {
+		word-wrap: break-word;
+	}
+	#container-comments .panel-footer * {
 		display: inline-block;
 		vertical-align: middle;
 		width: 50%;
 		min-width: 330px;
 	}
-	#container-comments .panel-heading p {
+	#container-comments .panel-footer p {
 		margin-bottom: 0;
 		font-size: 1em;
 	}
-	#container-comments .panel-heading div {
-		font-size: .8em;
+	#container-comments .panel-footer div {
+		font-size: .9em;
+	}
+	#container-comments .panel-footer {
+		background: #fff;
+	}
+	#container-comments .panel-footer .text-info {
+		color: #474747;
 	}
 	#container-comment-form {
 		margin-bottom: 20px;
 	}
+	#container-comments .icon-outer {
+		float: right;
+		overflow: hidden;
+		margin-left: 10px;
+	}
 </style>
 <div id="container-comments" class="container-fluid ">
 	{% for comment in comments %}
-		<div class="comment-item panel panel-default">
-			{% if 'post' in request.path and user.id == comment.author.id %}
-				<span class="glyphicon glyphicon-pencil text-info" onclick="changeComment(this)"></span>
-				<a class="glyphicon glyphicon-trash text-info" href="/delete/{{comment.id}}"></a>
+		<div class="comment-item panel panel-default" id={{comment.pk}}>
+			{% if 'blog' in request.path %}
+				<div class="panel-heading">
+					<p>Комментарий к посту</p> "<a href="/post/{{comment.to_post.pk}}#{{comment.pk}}" class="text-capitalize" >{{ comment.to_post.title }}</a>"
+				</div>
 			{% endif %}
-			<div class="panel-heading">
-				{% if comment.is_corrected %}
-					<div>it was corrected</div>
-					{{ comment.corrected_at|date("d E Y") }} в {{ comment.corrected_at|time("H:i") }}
-				{% endif %}
-				<p class="text-info">Комментарий от {{ comment.author }}</p
-				><div class="text-info text-right">Добавлен {{ comment.created_at|date("d E Y") }} в {{ comment.created_at|time("H:i") }}</div>
-			</div>
 			<div class="panel-body">
-				<div class="_comment-changed _active">{{ comment.content }}</div>
+				{% if 'post' in request.path and user.id == comment.author.id %}
+					<div class='icon-outer'>
+						<span class="glyphicon glyphicon-pencil" onclick="changeComment(this)"></span>
+						<a class="glyphicon glyphicon-trash" href="/delete/{{comment.id}}"></a>
+					</div>
+				{% endif %}
+				<div class="_comment-changed _active _preview-comment">{{ comment.content }}</div>
 				<div class="_comment-changed">
 					<form method="post" action="/change_comment/{{comment.id}}/">
 						{%csrf_token%}
@@ -68,14 +83,20 @@
 					</form>
 				</div>
 			</div>
-			{% if 'blog' in request.path %} 
-				<a href="/post/{{comment.to_post.pk}}/"></a>
-			{% endif %}
+			<div class="panel-footer">
+				<p class="text-info">Комментарий от {{ comment.author }}</p
+				><div class="text-info text-right">
+				<div>Добавлен {{ comment.created_at|date("d E Y") }} в {{ comment.created_at|time("H:i") }}</div>
+					{% if comment.is_corrected %}
+						<div>Откорректирован {{ comment.corrected_at|date("d E Y") }} в {{ comment.corrected_at|time("H:i") }}</div>
+					{% endif %}
+				</div>
+			</div>
 		</div>
 	{% endfor %}
 	<script type="text/javascript">
 		function changeComment(element) {
-			var set = element.parentNode.getElementsByClassName('_comment-changed');
+			var set = element.parentNode.parentNode.getElementsByClassName('_comment-changed');
 
 			for ( var i = 0; i < set.length; i++ ) {
 				set[i].classList.toggle('_active');

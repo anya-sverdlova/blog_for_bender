@@ -15,7 +15,7 @@
 </style>
 <div id="container-single-post" class="panel panel-default">
 	<div class="panel-heading">
-		<h3 class="text-info" style="margin: 10px 0;">{{ post.title }}</h3>
+		<h3 class="text-info text-capitalize" style="margin: 10px 0;">{{ post.title }}</h3>
 		{% if user.id == post.author.id %}
 			<a class="glyphicon glyphicon-pencil text-info" href="/admin/blog/post/{{ post.id }}/change/"></a>
 		{% endif %}
