@@ -2,54 +2,12 @@
 
 {% block title %}Бложик{% endblock %}
 
+{% block css %}
+  <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ STATIC_URL }}css/blog_style.css" rel="stylesheet">
+{% endblock %}
+
 {% block content %}
-<style>
-	#blog {
-		padding-top: 10px;
-		font-family: Comic Sans MS;
-	}
-	#preview .panel h3 {
-		margin: 0;
-		font-size: 1.3em;
-	}
-	#preview .panel-heading, #preview .panel-footer {
-		background: transparent;
-		border:none;
-	}
-	#preview .panel {
-		font-size: .8em;
-		background-color: rgba(240, 240, 240, .3);
-	}
-	#preview .panel-footer {
-		padding: 5px 7px;
-	}
-	#preview .panel:hover {
-		background: rgba(240, 240, 240, 1);
-	}
-	#preview .panel-footer p {
-		margin: 0;
-	}
-	#preview .panel-body {
-		background: transparent;
-		margin: 10px;
-	}
-	#preview h4 {
-		margin-top: 0;
-		margin-bottom: 15px;
-	}
-	#preview .posts-item .panel-heading h3 {
-		position: relative;
-		color: #31708f;
-	}
-	#preview .posts-item .panel-footer a.author-link {
-		display: none;
-	}
-	#preview .glyphicon-option-horizontal {
-		position: absolute;
-		top: 0;
-		right: 0;
-	}
-</style>
 	<div id="blog" class="container-fluid">
 		<div class="col-md-8">
 			{% include 'blog/single_post.tpl' %}

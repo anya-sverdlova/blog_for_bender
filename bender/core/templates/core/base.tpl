@@ -7,22 +7,11 @@
     <title>
       {% block title %}Base{% endblock %}
     </title>
-    <script type="text/javascript"  url="/blog/clamp.js"></script>
     {% block css %}
       <link href="{{ STATIC_URL }}css/bootstrap.min.css" rel="stylesheet">
     {% endblock %}
   </head>
   <body>
-  <script>
-    function makePreview(element_class, rows) {
-      console.log('makePreview from' + element_class)
-      var previews = document.getElementsByClassName(element_class);
-
-        for ( var i = 0; i < previews.length; i++ ) {
-          $clamp(previews[i], {clamp: rows});
-        }
-    }
-  </script>
     {% include 'core/navigation.tpl' %}
     
     {% block content %}
@@ -30,6 +19,7 @@
     {% endblock %}
     
     {% block js %}
+      <script type="text/javascript"  src="{{ STATIC_URL }}js/makePreview.js"></script>
       <script type="text/javascript" src="{{ STATIC_URL }}js/clamp.js"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
       <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>

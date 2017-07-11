@@ -1,18 +1,3 @@
-<style>
-	#container-single-post .glyphicon {
-		position: absolute;
-		top: 15px;
-		right: 30px;
-		font-size: 1.2em;
-	}
-	#container-single-post .panel-footer>p {
-		display: inline-block;
-		vertical-align: middle;
-		width: 50%;
-		min-width: 330px;
-		font-size: .9em;
-	}
-</style>
 <div id="container-single-post" class="panel panel-default">
 	<div class="panel-heading">
 		<h3 class="text-info text-capitalize" style="margin: 10px 0;">{{ post.title }}</h3>

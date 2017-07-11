@@ -1,23 +1,7 @@
 {% if 'posts_by_author' in request.path %}
 	<h3>Posts by {{ posts[0].author }}</h3>
 {% endif %}
-<style>
-	.panel-body {
-		box-sizing: border-box;
-		padding: 0;
-		margin: 15px;
-	}
-	.posts-item .panel-footer>* {
-		display: inline-block;
-		vertical-align: top;
-		width: 33%;
-		min-width: 220px;
-		font-size: .9em;
-	}
-	.panel-heading h3 {
-		margin-top: 10px;
-	}
-</style>
+
 {% for post in posts %}
 	<div class="posts-item">
 		<div class="panel panel-default">

@@ -3,13 +3,6 @@
 {% block title %}Бложик{% endblock %}
 
 {% block content %}
-
-<style>
-	#blog {
-		font-family: Comic Sans MS;
-		padding-top: 10px;
-	}
-</style>
 	
 <div id="blog" class="container-fluid">
 	<div class="col-md-1"></div>
